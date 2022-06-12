@@ -37,20 +37,86 @@ function validateSchema(schema) {
 
 //TODO 5: Add missing fields
 const jediSchema = {
-    id: {
-        isInt: true,
-        errorMessage: 'ID is wrong',
-        in: ['body']
+  id: {
+    isInt: true,
+    errorMessage: 'ID is wrong',
+    in: ['body']
+  },
+  name: {
+    isString: {
+        errorMessage: "Name is wrong"
     },
-    name: {
-        isString: {
-            errorMessage: "Name is wrong"
+    isLength: {
+        errorMessage: 'Name should be 4 chars long',
+        options: { min: 4 },
+    },
+    in: ['body']
+  },
+  height: {
+    isInt: {
+        options: {
+            gt: 10,
+            lt: 300
         },
-        isLength: {
-            errorMessage: 'Name should be 4 chars long',
-            options: { min: 4 },
-        }
-    }
+        errorMessage: "Height should be between 10 and 300"
+    },
+    in: ['body']
+  },
+  mass: {
+    isInt: {
+        options: {
+            gt: 0
+        },
+        errorMessage: "Mass should be greater than 0"
+    },
+    in: ['body']
+  },
+  hair_color: {
+    isString: {
+        errorMessage: "Hair color is wrong"
+    },
+    isLength: {
+        errorMessage: 'Hair color should be at least 3 chars long',
+        options: {min: 3},
+    },
+    in: ['body']
+  },
+  skin_color: {
+    isString: {
+        errorMessage: "Skin color color is wrong"
+    },
+    isLength: {
+        errorMessage: 'Skin color should be at list 3 chars long',
+        options: {min: 3},
+    },
+    in: ['body']
+  },
+  birth_year: {
+    isString: {
+        errorMessage: "Birth year color is wrong"
+    },
+    isLength: {
+        errorMessage: 'Birth year should be at least 4 chars long',
+        options: {min: 4},
+    },
+    in: ['body']
+  },
+  eye_color: {
+    isString: {
+        errorMessage: "Eye color color is wrong"
+    },
+    isLength: {
+        errorMessage: 'Eye color should be at least 4 chars long',
+        options: {min: 4},
+    },
+    in: ['body']
+  },
+  gender: {
+    isString: {
+        errorMessage: "Gender is wrong"
+    },
+    in: ['body']
+  },
 };
 
 module.exports = {
