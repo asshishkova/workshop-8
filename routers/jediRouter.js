@@ -1,5 +1,7 @@
 const express = require('express');
 const {validateSchema, jediSchema} = require("../middleware/validation");
+const auth = require('../middleware/auth');
+
 const {
     createJedi,
     getAll,
@@ -14,8 +16,8 @@ const jediRouter = express.Router();
 //TODO 8 Add auth middleware to all routes
 jediRouter.get('/', getAll);
 jediRouter.get('/:id', getJedi);
-jediRouter.post('/', validateSchema(jediSchema), createJedi);
-jediRouter.put('/:id', validateSchema(jediSchema), replaceJedi);
-jediRouter.delete('/:id', deleteJedi);
+jediRouter.post('/', auth, validateSchema(jediSchema), createJedi);
+jediRouter.put('/:id', auth, validateSchema(jediSchema), replaceJedi);
+jediRouter.delete('/:id', auth, deleteJedi);
 
 module.exports = jediRouter;
